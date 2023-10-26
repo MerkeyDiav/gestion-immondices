@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import Resident
+from .models import Resident, Signalement, Notification
 
 User = get_user_model()
 
@@ -35,3 +35,15 @@ class ResidentSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class SignalementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Signalement
+        fields = "__all__"
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = "__all__"

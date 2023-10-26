@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Collecte, CollectPoint, Container
+
+admin.site.register(Collecte)
+admin.site.register(CollectPoint)
+admin.site.register(Container)
