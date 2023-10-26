@@ -39,18 +39,25 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # application
     "residents.apps.ResidentsConfig",
+    
     # third-party application
     "rest_framework",
     "corsheaders",
     "rest_framework.authtoken",
-    "allauth", 
-    "allauth.account",  
-    "allauth.socialaccount",  
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "dj_rest_auth.jwt_auth.JWTCookieAuthenticationBackend",
+]
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -60,6 +67,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
 ]
+
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
@@ -85,7 +93,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "django.templates.context_processors.requests",
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -147,3 +155,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "residents.serializers.CustomRegisterSerializer",
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
