@@ -30,7 +30,7 @@ urlpatterns = [
     path("api/waste/", include("waste.urls")),
     # api authentication system
     path("api/residents/auth/", include("dj_rest_auth.urls")),
-    path("api/users/auth/password/reset/", include("django.contrib.auth.urls")),
+    path("api/residents/auth/password/reset/", include("django.contrib.auth.urls")),
     # api Documentation
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
